@@ -1,0 +1,108 @@
+@import 'assets/styles/variables.scss';
+
+.film-detail {
+  .wrapper {
+    .poster {
+      color: map-get($map: $colors, $key: neutral-100);
+    }
+
+    .description {
+      color: map-get($map: $colors, $key: neutral-100);
+
+      ul {
+        @apply space-y-p2 lg:space-y-1.5 xl:space-y-p3;
+
+        li {
+          @apply leading-[1.3rem] lg:text-sm xl:text-base;
+        }
+      }
+    }
+
+    .btn {
+      > * {
+        @apply py-2 text-lg leading-5.5;
+        @apply lg:py-2 lg:text-xl lg:leading-6;
+        @apply xl:py-p2 xl:text-2xl xl:leading-7.5;
+        @apply rounded-p2 font-bold shadow-sd-1;
+        background-image: linear-gradient(to right, #ef8a8a, #db5757, #ed3f3f);
+      }
+    }
+
+    .genres {
+      color: map-get($map: $colors, $key: neutral-100);
+
+      .genre-item {
+        @apply lg:mb-p10;
+        @apply xl:mb-p14;
+        @apply text-center;
+
+        a {
+          @apply block rounded-p4 px-p3 py-p1 text-sm leading-none;
+          border: 1px solid map-get($map: $colors, $key: neutral-100);
+        }
+      }
+    }
+  }
+
+  &.film-detail-light {
+    background-color: map-get($map: $colors, $key: neutral-300);
+
+    .summary {
+      color: map-get($map: $colors, $key: neutral-1000);
+
+      hr {
+        background-color: map-get($map: $colors, $key: neutral-1000);
+      }
+    }
+  }
+
+  &.film-detail-dark {
+    background-color: map-get($map: $colors, $key: neutral-800);
+
+    .summary {
+      color: map-get($map: $colors, $key: neutral-100);
+
+      hr {
+        background-color: map-get($map: $colors, $key: neutral-100);
+      }
+    }
+  }
+}
+
+@media not all and (screen(lg)) {
+  .film-detail-light {
+    .wrapper {
+      .description {
+        color: map-get($map: $colors, $key: neutral-1000);
+      }
+
+      .genres {
+        color: map-get($map: $colors, $key: neutral-1000);
+
+        .genre-item {
+          a {
+            border: 1px solid map-get($map: $colors, $key: neutral-1000);
+          }
+        }
+      }
+    }
+  }
+
+  .film-detail-dark {
+    .wrapper {
+      .description {
+        color: map-get($map: $colors, $key: neutral-100);
+      }
+
+      .genres {
+        color: map-get($map: $colors, $key: neutral-100);
+
+        .genre-item {
+          a {
+            border: 1px solid map-get($map: $colors, $key: neutral-100);
+          }
+        }
+      }
+    }
+  }
+}

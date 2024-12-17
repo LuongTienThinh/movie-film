@@ -1,0 +1,149 @@
+@import 'assets/styles/variables.scss';
+
+footer {
+  @apply brightness-90;
+
+  .logo {
+    @apply overflow-hidden rounded-p2;
+  }
+  .btn-footer {
+    button {
+      @apply rounded-p2 px-2 py-1.5 text-lg leading-none;
+    }
+  }
+
+  .title {
+    @apply text-xl leading-none;
+  }
+
+  .social-contact {
+    li {
+      &:not(:first-child) {
+        @apply ms-2;
+      }
+
+      .icon {
+        @apply h-10 w-10;
+      }
+    }
+  }
+
+  .register,
+  .footer-end {
+    input {
+      @apply rounded-p4 px-p6 py-p2 text-sm;
+
+      &::placeholder {
+        @apply italic;
+      }
+    }
+  }
+
+  .by {
+    @apply self-end text-[8px] italic;
+  }
+}
+
+footer.light-footer {
+  background-color: map-get($map: $colors, $key: neutral-200);
+  color: map-get($map: $colors, $key: neutral-1000);
+
+  .btn-footer {
+    button {
+      background-color: map-get($map: $colors, $key: neutral-1000);
+      color: map-get($map: $colors, $key: neutral-200);
+    }
+  }
+
+  .register,
+  .footer-end {
+    input {
+      background-color: map-get($map: $colors, $key: neutral-400);
+
+      &::placeholder {
+        color: map-get($map: $colors, $key: neutral-1000);
+      }
+    }
+  }
+}
+
+footer.dark-footer {
+  background-color: map-get($map: $colors, $key: neutral-900);
+  color: map-get($map: $colors, $key: neutral-100);
+
+  .btn-footer {
+    button {
+      background-color: map-get($map: $colors, $key: neutral-100);
+      color: map-get($map: $colors, $key: neutral-900);
+    }
+  }
+
+  .register,
+  .footer-end {
+    input {
+      background-color: map-get($map: $colors, $key: neutral-700);
+
+      &::placeholder {
+        color: map-get($map: $colors, $key: neutral-100);
+      }
+    }
+  }
+}
+
+.footer-grid {
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas:
+    'logo logo logo btn btn contact contact contact register register register register'
+    'logo logo logo btn btn contact contact contact register register register register'
+    'empty empty empty ads ads ads ads ads ads by by by';
+
+  .logo {
+    grid-area: logo;
+  }
+
+  .btn-footer {
+    grid-area: btn;
+  }
+
+  .contact {
+    grid-area: contact;
+  }
+
+  .register {
+    grid-area: register;
+  }
+
+  .empty {
+    grid-area: empty;
+  }
+
+  .ads {
+    grid-area: ads;
+  }
+
+  .by {
+    grid-area: by;
+  }
+}
+
+@media not all and (screen(xl)) {
+  .footer-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas:
+      'logo logo logo logo btn btn btn register register register register register'
+      'logo logo logo logo btn btn btn register register register register register'
+      'contact contact contact contact ads ads ads ads ads by by by';
+  }
+}
+
+@media not all and (screen(lg)) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'logo'
+      'register'
+      'contact'
+      'ads'
+      'by';
+  }
+}

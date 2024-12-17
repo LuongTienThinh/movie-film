@@ -1,0 +1,97 @@
+@import 'assets/styles/variables.scss';
+
+@property --gradient {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.banner {
+  .banner-img {
+    @apply h-[min(400px,100vh-60px)] w-full lg:h-[min(800px,100vh-60px)] object-cover;
+  }
+
+  .slick-wrapper {
+    @apply absolute -bottom-p2 left-1/2 w-full -translate-x-1/2 lg:bottom-p2 xl:bottom-p6;
+
+    .slick-arrow {
+      @apply relative left-auto right-auto top-0 z-50 block h-fit w-fit transform-none;
+
+      .icon {
+        @apply h-10 w-10;
+        stroke: map-get($map: $colors, $key: neutral-200);
+      }
+
+      &::before {
+        content: none;
+        color: black !important;
+      }
+    }
+
+    .slick-track {
+      @apply flex items-center;
+
+      .slick-slide {
+        display: flex !important;
+        @apply pointer-events-none relative mb-p16 mt-p20 items-center justify-center;
+
+        * {
+          @apply outline-none;
+        }
+
+        .img-wrapper {
+          @apply relative;
+
+          img {
+            @apply pointer-events-auto m-auto h-[126px] w-[91px] cursor-pointer;
+            @apply sm:h-[162px] sm:w-[117px] cursor-pointer;
+            @apply xl:h-[180px] xl:w-[130px] cursor-pointer;
+            border-radius: 10px !important;
+          }
+
+          .movie-detail {
+            @apply absolute left-1/2 top-9/10 min-w-[116px] -translate-x-1/2 rounded-p2 px-p3 py-2 text-xs leading-none opacity-0;
+          }
+        }
+
+        &.slick-center {
+          @apply mt-p12;
+
+          .img-wrapper {
+            @apply mt-1.5;
+
+            &::before {
+              content: '';
+
+              @apply absolute -left-[1.5%] -top-[1.5%] -z-10 h-[103%] w-[103%] scale-[1.6] rounded-3;
+
+              background-image: linear-gradient(var(--gradient), map-get($border-gradient, cl-1), map-get($border-gradient, cl-2), map-get($border-gradient, cl-3));
+              animation: rotation 4s linear infinite;
+            }
+
+            img {
+              @apply scale-[1.6] cursor-pointer;
+            }
+
+            .movie-detail {
+              @apply pointer-events-auto top-[calc(90%+56px)] -translate-x-1/2 text-lg font-bold leading-none opacity-100;
+              color: map-get($map: $colors, $key: neutral-100);
+              background-image: linear-gradient(to right, map-get($btn-bg-gradient, cl-sky-1), map-get($btn-bg-gradient, cl-sky-2), map-get($btn-bg-gradient, cl-sky-3));
+              transition: all linear 0.5s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    --gradient: 0deg;
+  }
+
+  100% {
+    --gradient: 360deg;
+  }
+}

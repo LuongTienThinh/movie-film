@@ -1,0 +1,175 @@
+@import 'assets/styles/variables.scss';
+
+.profile {
+  .tab-list {
+    .tab {
+      .icon {
+        @apply h-10 w-10 text-transparent;
+
+        &.selected {
+          @apply origin-bottom max-lg:scale-125;
+
+          path {
+            @apply stroke-2.5;
+          }
+        }
+
+        &.logout {
+          g {
+            @apply scale-[2] z-auto;
+
+            path {
+              @apply stroke-0.75;
+            }
+          }
+
+          &.selected {
+            path {
+              @apply stroke-1.25;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tab-panel {
+    .panel {
+      .detail {
+        @apply space-y-p4;
+        @apply xl:space-y-p6;
+
+        li {
+          @apply flex w-full items-center;
+
+          > span {
+            @apply w-2/5 sm:w-3/10;
+          }
+
+          > .action {
+            @apply w-[15%] text-center sm:w-3/10;
+          }
+
+          > div {
+            @apply w-[45%] sm:w-2/5;
+          }
+
+          .edit-avatar {
+            .icon {
+              @apply h-p2 w-p2;
+            }
+          }
+        }
+      }
+
+      input {
+        @apply mb-4 text-sm leading-none;
+
+        &::placeholder {
+          @apply font-extralight;
+        }
+      }
+
+      p {
+        @apply text-xs;
+        @apply xl:text-sm;
+        @apply my-1 font-extralight leading-5;
+      }
+
+      .submit-btn {
+        @apply w-full bg-red;
+        color: map-get($map: $colors, $key: neutral-100);
+      }
+    }
+  }
+
+  &.profile-light {
+    color: map-get($map: $colors, $key: neutral-1000);
+    background-color: map-get($map: $colors, $key: neutral-300);
+
+    .tab-list {
+      background-color: map-get($map: $colors, $key: neutral-200);
+
+      .tab {
+        .title {
+          border-color: map-get($map: $colors, $key: neutral-1000);
+        }
+
+        .icon {
+          stroke: map-get($map: $colors, $key: neutral-1000);
+        }
+      }
+    }
+
+    .tab-panel {
+      background-color: map-get($map: $colors, $key: neutral-200);
+
+      .panel {
+        .detail {
+          li {
+            .edit-avatar {
+              background-color: map-get($map: $colors, $key: neutral-700);
+
+              .icon {
+                color: map-get($map: $colors, $key: neutral-200);
+              }
+            }
+          }
+        }
+
+        input {
+          background-color: map-get($map: $colors, $key: neutral-400);
+
+          &::placeholder {
+            color: map-get($map: $colors, $key: neutral-1000);
+          }
+        }
+      }
+    }
+  }
+
+  &.profile-dark {
+    color: map-get($map: $colors, $key: neutral-100);
+    background-color: map-get($map: $colors, $key: neutral-800);
+
+    .tab-list {
+      background-color: map-get($map: $colors, $key: neutral-900);
+
+      .tab {
+        .title {
+          border-color: map-get($map: $colors, $key: neutral-100);
+        }
+
+        .icon {
+          stroke: map-get($map: $colors, $key: neutral-100);
+        }
+      }
+    }
+
+    .tab-panel {
+      background-color: map-get($map: $colors, $key: neutral-900);
+
+      .panel {
+        .detail {
+          li {
+            .edit-avatar {
+              background-color: map-get($map: $colors, $key: neutral-400);
+
+              .icon {
+                color: map-get($map: $colors, $key: neutral-900);
+              }
+            }
+          }
+        }
+
+        input {
+          background-color: map-get($map: $colors, $key: neutral-700);
+
+          &::placeholder {
+            color: map-get($map: $colors, $key: neutral-100);
+          }
+        }
+      }
+    }
+  }
+}

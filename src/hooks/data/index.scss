@@ -1,0 +1,173 @@
+@import 'assets/styles/variables.scss';
+
+.sub-content {
+  .header {
+    @apply mb-p8 gap-p4 rounded-p2 leading-7;
+
+    > * {
+      @apply rounded-p2 py-[11px] relative;
+
+      .bg {
+        @apply absolute top-0 z-10 block h-full w-full rounded-p2;
+      }
+    }
+
+    .title {
+      .bg {
+        @apply right-0;
+
+        transform: perspective(350px) rotateX(-12deg);
+        -o-transform: perspective(350px) rotateX(-12deg);
+        -moz-transform: perspective(350px) rotateX(-12deg);
+        transform-origin: 0% 50%;
+        -webkit-transform-origin: 0% 50%;
+        -moz-transform-origin: 0% 50%;
+        -o-transform-origin: 0% 50%;
+      }
+
+      h2 {
+        @apply relative z-10 ps-6 text-[22px] font-extrabold leading-none max-sm:text-sm;
+      }
+    }
+
+    .btn-more {
+      @apply flex items-center justify-center;
+
+      .bg {
+        @apply left-0;
+
+        transform: perspective(350px) rotateX(12deg);
+        -o-transform: perspective(350px) rotateX(12deg);
+        -moz-transform: perspective(350px) rotateX(12deg);
+        transform-origin: 100% 50%;
+        -webkit-transform-origin: 100% 50%;
+        -moz-transform-origin: 100% 50%;
+        -o-transform-origin: 100% 50%;
+      }
+
+      a {
+        @apply relative z-10 h-full w-full cursor-pointer text-center text-lg italic leading-[1.2] max-sm:text-sm;
+      }
+    }
+  }
+
+  .list-filter {
+    @apply mb-p6 gap-p4 max-sm:gap-x-[5%] w-full;
+
+    .filter-item {
+      .title {
+        @apply px-p2 py-p1 text-base font-medium leading-none;
+      }
+
+      .filter-wrapper {
+        @apply relative;
+
+        select {
+          @apply w-full rounded-p1 bg-transparent p-p2 text-sm leading-none;
+        }
+
+        .icon {
+          @apply h-3.5 w-3.5 text-transparent;
+        }
+      }
+    }
+  }
+
+  &.sub-content-light {
+    .header {
+      > * .bg {
+        background-color: map-get($map: $colors, $key: neutral-400);
+      }
+    }
+
+    .list-filter {
+      .filter-item {
+        .filter-wrapper {
+          select {
+            border: 1px solid map-get($map: $colors, $key: neutral-800);
+          }
+
+          .icon {
+            stroke: map-get($map: $colors, $key: neutral-800);
+          }
+        }
+      }
+    }
+  }
+
+  &.sub-content-dark {
+    .header {
+      > * .bg {
+        background-color: map-get($map: $colors, $key: neutral-700);
+      }
+    }
+
+    .list-filter {
+      .filter-item {
+        .filter-wrapper {
+          select {
+            border: 1px solid map-get($map: $colors, $key: neutral-300);
+          }
+
+          .icon {
+            stroke: map-get($map: $colors, $key: neutral-300);
+          }
+        }
+      }
+    }
+  }
+}
+
+.sub-content {
+  ul.pagination {
+    @apply gap-2 sm:gap-p2;
+
+    li {
+      @apply flex items-center;
+
+      button {
+        @apply min-w-7 rounded-p1 p-1 font-medium leading-none;
+
+        .icon {
+          @apply h-7 w-7 text-transparent;
+
+          path {
+            @apply scale-[.7] stroke-2;
+          }
+        }
+
+        &:disabled {
+          @apply opacity-60;
+        }
+      }
+    }
+  }
+
+  &.sub-content-light {
+    ul.pagination {
+      li button {
+        border: 1px solid map-get($map: $colors, $key: neutral-1000);
+
+        .icon {
+          stroke: map-get($map: $colors, $key: neutral-1000);
+        }
+
+        &.active {
+          background-color: map-get($map: $colors, $key: neutral-500);
+        }
+      }
+    }
+  }
+
+  &.sub-content-dark {
+    ul.pagination {
+      li button {
+        border: 1px solid map-get($map: $colors, $key: neutral-100);
+
+        &.active {
+          background-color: map-get($map: $colors, $key: neutral-600);
+        }
+      }
+    }
+  }
+}

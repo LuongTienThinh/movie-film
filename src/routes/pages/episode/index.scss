@@ -1,0 +1,28 @@
+@import 'assets/styles/variables.scss';
+
+.episodes {
+  .film-watching {
+    @apply relative w-full;
+    padding-top: min(56.25%, calc(100vh - 60px));
+
+    iframe {
+      @apply absolute left-0 top-0 h-full w-full;
+    }
+  }
+
+  &.episodes-light {
+    color: map-get($map: $colors, $key: neutral-900);
+
+    .list-episodes {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+  }
+
+  &.episodes-dark {
+    color: map-get($map: $colors, $key: neutral-200);
+
+    .list-episodes {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+  }
+}

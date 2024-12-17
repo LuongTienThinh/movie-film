@@ -1,0 +1,469 @@
+@import 'assets/styles/variables.scss';
+
+header {
+  @apply sticky top-0 z-50 backdrop-blur-sm;
+
+  .logo {
+    @apply overflow-hidden rounded-p2;
+  }
+
+  .header-nav-mid {
+    & > ul {
+      @apply items-center justify-between text-lg leading-none;
+
+      .dropdown-icon {
+        @apply h-[7px] w-2.5;
+      }
+
+      li {
+        button,
+        a {
+          span {
+            @apply cursor-pointer font-semibold uppercase;
+          }
+
+          &:hover span {
+            @apply mt-0.5;
+          }
+
+          &:hover ~ .header-nav-dropdown {
+            @apply -mt-0.5;
+          }
+        }
+      }
+
+      & > li:not(:first-child) {
+        @apply ms-4;
+      }
+    }
+  }
+
+  .header-nav-dropdown {
+    @apply top-[calc(100%+22px)] z-50 gap-[5%] rounded-p2 font-medium;
+
+    li {
+      @apply relative px-2 py-p1 text-base leading-none;
+    }
+
+    &.dropdown-genre {
+      @apply w-[410px] z-50;
+
+      li {
+        @apply w-3/10;
+
+        &::before {
+          content: '';
+
+          @apply absolute left-0 top-1/2 h-4/5 w-0.5 -translate-y-1/2;
+        }
+      }
+    }
+
+    &.dropdown-country {
+      @apply w-[300px] z-50;
+
+      li {
+        @apply w-[45%] relative;
+
+        &::before {
+          content: '';
+
+          @apply absolute left-0 top-1/2 h-4/5 w-0.5 -translate-y-1/2;
+        }
+      }
+    }
+
+    &.dropdown-search {
+      @apply top-[106%] max-h-[360px] w-full p-p1;
+
+      ul {
+        @apply max-h-[calc(360px-10px)] z-auto;
+
+        li {
+          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-none;
+
+          a {
+            @apply block h-full w-full px-2 py-p1;
+          }
+        }
+      }
+    }
+
+    &.dropdown-notify {
+      @apply -right-p1 top-[calc(100%+20px)] max-h-[360px] w-[285px] p-p1;
+
+      ul {
+        @apply max-h-[350px] z-auto;
+
+        li {
+          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-none;
+
+          a {
+            @apply block h-full w-full px-2 py-p1;
+          }
+        }
+      }
+    }
+
+    &.dropdown-user {
+      @apply top-[calc(100%+14px)] w-[150px] rounded-p1;
+
+      li {
+        @apply w-full;
+      }
+    }
+  }
+
+  .header-nav-end {
+    > *:not(:first-child) {
+      @apply ms-p2;
+    }
+
+    .account {
+      .header-icon {
+        @apply h-5 w-5;
+      }
+    }
+  }
+
+  .header-icon {
+    @apply h-6 w-6 text-transparent transition-all;
+  }
+
+  &.mobile {
+    .header-nav-end {
+      .menu {
+        @apply fixed bottom-0 left-0 top-p12 z-50 h-[calc(100vh-60px)] w-full;
+
+        ul.pages {
+          .dropdown-icon {
+            @apply h-[7px] w-2.5;
+          }
+
+          & > li {
+            button,
+            a {
+              span {
+                @apply cursor-pointer font-semibold uppercase;
+              }
+            }
+          }
+
+          .header-nav-dropdown {
+            @apply w-full;
+
+            ul {
+              @apply flex items-center justify-start gap-y-3;
+
+              li {
+                @apply w-1/4 px-2 max-sm:w-1/2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Light mode
+header.light-header {
+  background-color: rgba(map-get($map: $colors, $key: neutral-200), $alpha: 0.8);
+  color: map-get($map: $colors, $key: neutral-900);
+
+  .header-nav-mid {
+    ul {
+      li {
+        button,
+        a {
+          &:hover span {
+            border-bottom: 2px solid map-get($map: $colors, $key: neutral-900);
+          }
+        }
+      }
+    }
+  }
+
+  .nav-search {
+    background-color: map-get($map: $colors, $key: neutral-400);
+
+    input {
+      @apply bg-transparent;
+    }
+  }
+
+  .header-nav-dropdown {
+    background-color: map-get($map: $colors, $key: neutral-400);
+
+    &.dropdown-genre {
+      li {
+        &:hover a {
+          border-bottom: 1px solid map-get($map: $colors, $key: neutral-900);
+          @apply font-bold;
+        }
+
+        &:hover::before {
+          background-color: map-get($map: $colors, $key: neutral-900);
+        }
+      }
+    }
+
+    &.dropdown-country {
+      li {
+        &:hover a {
+          border-bottom: 1px solid map-get($map: $colors, $key: neutral-900);
+          @apply font-bold;
+        }
+
+        &:focus a {
+          @apply font-bold;
+        }
+
+        &:hover::before {
+          background-color: map-get($map: $colors, $key: neutral-900);
+        }
+      }
+    }
+
+    &.dropdown-user {
+      li {
+        &:hover {
+          background-color: map-get($map: $colors, $key: neutral-500);
+        }
+      }
+    }
+
+    &.dropdown-search {
+      background-color: map-get($map: $colors, $key: neutral-200);
+
+      ul {
+        li {
+          background-color: map-get($map: $colors, $key: neutral-300);
+
+          &:hover {
+            background-color: map-get($map: $colors, $key: neutral-500);
+          }
+        }
+      }
+    }
+
+    &.dropdown-notify {
+      background-color: map-get($map: $colors, $key: neutral-200);
+
+      ul {
+        li {
+          &.unseen {
+            background-color: map-get($map: $colors, $key: neutral-300);
+          }
+
+          &:hover {
+            background-color: map-get($map: $colors, $key: neutral-500);
+          }
+        }
+      }
+    }
+  }
+
+  .header-nav-end {
+    .login-btn {
+      color: map-get($map: $colors, $key: neutral-300);
+      background-color: map-get($map: $colors, $key: neutral-1000);
+    }
+  }
+
+  .header-icon {
+    stroke: map-get($map: $colors, $key: neutral-900);
+
+    &.toggle-icon {
+      color: map-get($map: $colors, $key: neutral-900);
+      @apply stroke-none;
+    }
+
+    &.notify-icon {
+      &:hover,
+      &.active {
+        color: map-get($map: $colors, $key: neutral-900);
+      }
+    }
+  }
+
+  &.mobile {
+    .header-nav-end {
+      .menu {
+        background-color: map-get($map: $colors, $key: neutral-400);
+
+        ul.pages {
+          & > li {
+            button,
+            a {
+              &:hover span {
+                border-bottom: 2px solid map-get($map: $colors, $key: neutral-900);
+              }
+            }
+          }
+
+          .header-nav-dropdown {
+            @apply bg-transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+// End light mode
+
+// Dark mode
+header.dark-header {
+  background-color: rgba(map-get($map: $colors, $key: neutral-900), $alpha: 0.8);
+  color: map-get($map: $colors, $key: neutral-100);
+
+  .header-nav-mid {
+    ul {
+      li {
+        button,
+        a {
+          &:hover span {
+            border-bottom: 2px solid map-get($map: $colors, $key: neutral-100);
+          }
+        }
+      }
+    }
+  }
+
+  .nav-search {
+    background-color: map-get($map: $colors, $key: neutral-700);
+
+    input {
+      @apply bg-transparent;
+    }
+  }
+
+  .header-nav-dropdown {
+    background-color: map-get($map: $colors, $key: neutral-700);
+
+    &.dropdown-genre {
+      li {
+        &:hover a {
+          border-bottom: 1px solid map-get($map: $colors, $key: neutral-100);
+          @apply font-bold;
+        }
+
+        &:hover::before {
+          background-color: map-get($map: $colors, $key: neutral-100);
+        }
+      }
+    }
+
+    &.dropdown-country {
+      li {
+        &:hover a {
+          border-bottom: 1px solid map-get($map: $colors, $key: neutral-100);
+          @apply font-bold;
+        }
+
+        &:focus a {
+          @apply font-bold;
+        }
+
+        &:hover::before {
+          background-color: map-get($map: $colors, $key: neutral-100);
+        }
+      }
+    }
+
+    &.dropdown-user {
+      li {
+        &:hover {
+          background-color: map-get($map: $colors, $key: neutral-600);
+        }
+      }
+    }
+
+    &.dropdown-search {
+      background-color: map-get($map: $colors, $key: neutral-900);
+
+      ul {
+        li {
+          background-color: map-get($map: $colors, $key: neutral-800);
+
+          &:hover {
+            background-color: map-get($map: $colors, $key: neutral-600);
+          }
+        }
+      }
+    }
+
+    &.dropdown-notify {
+      background-color: map-get($map: $colors, $key: neutral-900);
+
+      ul {
+        li {
+          &.unseen {
+            background-color: map-get($map: $colors, $key: neutral-800);
+          }
+
+          &:hover {
+            background-color: map-get($map: $colors, $key: neutral-600);
+          }
+        }
+      }
+    }
+  }
+
+  .header-nav-end {
+    .login-btn {
+      color: map-get($map: $colors, $key: neutral-800);
+      background-color: map-get($map: $colors, $key: neutral-100);
+    }
+  }
+
+  .header-icon {
+    stroke: map-get($map: $colors, $key: neutral-200);
+
+    &.toggle-icon {
+      color: map-get($map: $colors, $key: neutral-200);
+      @apply stroke-none;
+    }
+
+    &.notify-icon {
+      &:hover,
+      &.active {
+        color: map-get($map: $colors, $key: neutral-200);
+      }
+    }
+  }
+
+  &.mobile {
+    .header-nav-end {
+      .menu {
+        background-color: map-get($map: $colors, $key: neutral-700);
+
+        ul.pages {
+          & > li {
+            button,
+            a {
+              &:hover span {
+                border-bottom: 2px solid map-get($map: $colors, $key: neutral-200);
+              }
+            }
+          }
+
+          .header-nav-dropdown {
+            @apply bg-transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+// End dark mode
+
+// @media not all and (screen(sm)) {
+//   header.light-header {
+//     .nav-search {
+//       @apply bg-transparent;
+//     }
+//   }
+// }

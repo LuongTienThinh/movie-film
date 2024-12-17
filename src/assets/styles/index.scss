@@ -1,0 +1,223 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@import './variables.scss';
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 200;
+  src: url('../fonts/karla/Karla-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 200;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-ExtraLightItalic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 300;
+  src: url('../fonts/karla/Karla-Light.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 300;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 400;
+  src: url('../fonts/karla/Karla-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 400;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 500;
+  src: url('../fonts/karla/Karla-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 500;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-MediumItalic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 600;
+  src: url('../fonts/karla/Karla-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 600;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-SemiBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 700;
+  src: url('../fonts/karla/Karla-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 700;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 800;
+  src: url('../fonts/karla/Karla-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'karla';
+  font-weight: 800;
+  font-style: italic;;
+  src: url('../fonts/karla/Karla-ExtraBoldItalic.ttf');
+}
+
+body {
+  font-family: 'karla', sans-serif;
+  margin: 0 auto;
+  background-color: map-get($map: $colors, $key: neutral-500);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  @apply max-w-[calc(100vw-48px)];
+  @apply sm:max-w-[600px];
+  @apply md:max-w-[700px];
+  @apply lg:max-w-[900px];
+  @apply xl:max-w-[1120px];
+  @apply mx-auto my-0 h-full w-full;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+}
+
+input {
+  outline: none;
+}
+
+select {
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.common-flex-box {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.custom-scroll {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply w-2 rounded-full;
+    background-color: #a7a7a7;
+  }
+}
+
+.sub-content {
+  @apply py-10;
+
+  &.sub-content-light {
+    color: map-get($map: $colors, $key: neutral-1000);
+
+    &.anime-latest {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+
+    &.anime-series {
+      background-color: map-get($map: $colors, $key: neutral-200);
+    }
+
+    &.search-page {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+
+    &.wishlist-page {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+
+    &.genres-page {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+
+    &.anime-movies {
+      background-color: map-get($map: $colors, $key: neutral-300);
+    }
+
+    &.anime-ranks {
+      background-color: map-get($map: $colors, $key: neutral-200);
+    }
+  }
+
+  &.sub-content-dark {
+    color: map-get($map: $colors, $key: neutral-100);
+
+    &.anime-latest {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+
+    &.anime-series {
+      background-color: map-get($map: $colors, $key: neutral-900);
+    }
+
+    &.search-page {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+
+    &.wishlist-page {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+
+    &.genres-page {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+
+    &.anime-movies {
+      background-color: map-get($map: $colors, $key: neutral-800);
+    }
+
+    &.anime-ranks {
+      background-color: map-get($map: $colors, $key: neutral-900);
+    }
+  }
+}

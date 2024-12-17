@@ -1,0 +1,87 @@
+@import 'assets/styles/variables.scss';
+
+$menu: (
+  padding: 7px,
+  width: 30px,
+  height: 30px,
+);
+
+$dash: (
+  width:
+    map-get(
+      $map: $menu,
+      $key: width,
+    ) - map-get(
+      $map: $menu,
+      $key: padding,
+    ) * 2,
+  height:
+    map-get(
+      $map: $menu,
+      $key: height,
+    ) - map-get(
+      $map: $menu,
+      $key: padding,
+    ) * 2,
+  thick: 2px,
+);
+
+.menu-bar {
+  @apply relative block cursor-pointer rounded-2 p-p1;
+  width: map-get($map: $menu, $key: width);
+  height: map-get($map: $menu, $key: height);
+
+  span {
+    @apply absolute left-1/2 block -translate-x-1/2 rotate-0 rounded-p2 opacity-100 transition-all;
+    width: map-get($map: $dash, $key: width);
+    height: map-get($map: $dash, $key: thick);
+
+    &:nth-of-type(1) {
+      @apply origin-center;
+      top: map-get($map: $menu, $key: padding);
+    }
+
+    &:nth-of-type(2) {
+      @apply top-1/2 origin-center -translate-y-1/2;
+    }
+
+    &:nth-of-type(3) {
+      @apply origin-center;
+      bottom: map-get($map: $menu, $key: padding);
+    }
+  }
+
+  &.active {
+    span {
+      &:nth-of-type(1) {
+        @apply rotate-45;
+        top: calc((map-get($map: $menu, $key: height) - map-get($map: $dash, $key: thick)) / 2);
+      }
+
+      &:nth-of-type(2) {
+        @apply opacity-0;
+      }
+
+      &:nth-of-type(3) {
+        @apply -rotate-45;
+        bottom: calc((map-get($map: $menu, $key: height) - map-get($map: $dash, $key: thick)) / 2);
+      }
+    }
+  }
+
+  &.menu-bar-light {
+    background-color: map-get($map: $colors, $key: neutral-1000);
+
+    span {
+      background-color: map-get($map: $colors, $key: neutral-100);
+    }
+  }
+
+  &.menu-bar-dark {
+    background-color: map-get($map: $colors, $key: neutral-100);
+
+    span {
+      background-color: map-get($map: $colors, $key: neutral-1000);
+    }
+  }
+}

@@ -1,0 +1,143 @@
+@import 'assets/styles/variables.scss';
+
+.auth {
+  .auth-area {
+    .auth-btn {
+      color: map-get($map: $colors, $key: neutral-100);
+
+      *:not(:first-child) {
+        @apply ms-1.5;
+      }
+    }
+
+    .content {
+      .icon {
+        @apply h-6 w-6 sm:h-10 sm:w-10;
+
+        path {
+          @apply max-sm:scale-[.6] m-0;
+        }
+      }
+    }
+
+    input {
+      &::placeholder {
+        @apply text-xs font-extralight leading-none sm:text-sm;
+      }
+
+      &[type='checkbox'] {
+        @apply aspect-square h-full cursor-pointer rounded-p1 shadow-inner-1;
+        transition: background-color 0.3s;
+
+        background-color: transparent !important;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        &:checked {
+          background-color: #2196f3 !important;
+          @apply shadow-none;
+        }
+
+        &:checked ~ label {
+          @apply block;
+          animation: checkAnim 0.2s forwards;
+        }
+      }
+    }
+  }
+
+  label.checkbox {
+    @apply pointer-events-none absolute left-[7px] top-[3px] hidden h-p2 w-p1 border-b-2 border-e-2 border-solid border-white;
+
+    transform: rotate(45deg);
+  }
+
+  &.auth-light {
+    background-color: map-get($map: $colors, $key: neutral-300);
+
+    .auth-area {
+      color: map-get($map: $colors, $key: neutral-1000);
+      background-color: map-get($map: $colors, $key: neutral-200);
+
+      input {
+        background-color: map-get($map: $colors, $key: neutral-400);
+
+        &::placeholder {
+          color: map-get($map: $colors, $key: neutral-1000);
+        }
+
+        &[type='checkbox'] {
+          border-color: map-get($map: $colors, $key: neutral-800);
+        }
+      }
+
+      // label {
+      //   border-color: map-get($map: $colors, $key: neutral-800);
+      // }
+
+      hr {
+        background-color: map-get($map: $colors, $key: neutral-500);
+      }
+
+      .confirm-btns {
+        .cancel-btn {
+          background-color: map-get($map: $colors, $key: neutral-500);
+        }
+
+        .continue-btn {
+          background-color: map-get($map: $colors, $key: neutral-600);
+        }
+      }
+    }
+  }
+
+  &.auth-dark {
+    background-color: map-get($map: $colors, $key: neutral-800);
+
+    .auth-area {
+      color: map-get($map: $colors, $key: neutral-100);
+      background-color: map-get($map: $colors, $key: neutral-900);
+
+      input {
+        background-color: map-get($map: $colors, $key: neutral-700);
+
+        &::placeholder {
+          color: map-get($map: $colors, $key: neutral-100);
+        }
+
+        &[type='checkbox'] {
+          border-color: map-get($map: $colors, $key: neutral-300);
+        }
+      }
+
+      // label {
+      //   border-color: map-get($map: $colors, $key: neutral-300);
+      // }
+
+      hr {
+        background-color: map-get($map: $colors, $key: neutral-600);
+      }
+
+      .confirm-btns {
+        .cancel-btn {
+          background-color: map-get($map: $colors, $key: neutral-600);
+        }
+
+        .continue-btn {
+          background-color: map-get($map: $colors, $key: neutral-500);
+        }
+      }
+    }
+  }
+}
+
+@keyframes checkAnim {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 10px;
+  }
+}

@@ -1,0 +1,54 @@
+@import 'assets/styles/variables.scss';
+
+.ranking {
+  .tab-panel {
+    ul {
+      @apply divide-y-[1px] block;
+      
+
+      .rank-item {
+        .icon {
+          @apply h-p2 w-p2;
+        }
+      }
+    }
+  }
+
+  &.ranking-light {
+    .tab {
+      background-color: map-get($map: $colors, $key: neutral-300);
+
+      &.selected {
+        border-color: map-get($map: $colors, $key: neutral-500);
+        background-color: map-get($map: $colors, $key: neutral-400);
+      }
+    }
+
+    .tab-panel {
+      background-color: map-get($map: $colors, $key: neutral-400);
+
+      ul > * {
+        border-color: map-get($map: $colors, $key: neutral-500);
+      }
+    }
+  }
+
+  &.ranking-dark {
+    .tab {
+      background-color: map-get($map: $colors, $key: neutral-800);
+
+      &.selected {
+        border-color: map-get($map: $colors, $key: neutral-600);
+        background-color: map-get($map: $colors, $key: neutral-700);
+      }
+    }
+
+    .tab-panel {
+      background-color: map-get($map: $colors, $key: neutral-700);
+
+      ul > * {
+        border-color: map-get($map: $colors, $key: neutral-600);
+      }
+    }
+  }
+}
