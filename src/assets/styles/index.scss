@@ -10,98 +10,111 @@
 @import './variables.scss';
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
+  font-weight: 100;
+  src: url('../fonts/montserrat/Montserrat-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'montserrat';
+  font-weight: 100;
+  font-style: italic;
+  src: url('../fonts/montserrat/Montserrat-ThinItalic.ttf');
+}
+
+@font-face {
+  font-family: 'montserrat';
   font-weight: 200;
-  src: url('../fonts/karla/Karla-ExtraLight.ttf');
+  src: url('../fonts/montserrat/Montserrat-ExtraLight.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 200;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-ExtraLightItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-ExtraLightItalic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 300;
-  src: url('../fonts/karla/Karla-Light.ttf');
+  src: url('../fonts/montserrat/Montserrat-Light.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 300;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-LightItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-LightItalic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 400;
-  src: url('../fonts/karla/Karla-Regular.ttf');
+  src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 400;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-Italic.ttf');
+  src: url('../fonts/montserrat/Montserrat-Italic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 500;
-  src: url('../fonts/karla/Karla-Medium.ttf');
+  src: url('../fonts/montserrat/Montserrat-Medium.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 500;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-MediumItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-MediumItalic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 600;
-  src: url('../fonts/karla/Karla-SemiBold.ttf');
+  src: url('../fonts/montserrat/Montserrat-SemiBold.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 600;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-SemiBoldItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-SemiBoldItalic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 700;
-  src: url('../fonts/karla/Karla-Bold.ttf');
+  src: url('../fonts/montserrat/Montserrat-Bold.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 700;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-BoldItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-BoldItalic.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 800;
-  src: url('../fonts/karla/Karla-ExtraBold.ttf');
+  src: url('../fonts/montserrat/Montserrat-ExtraBold.ttf');
 }
 
 @font-face {
-  font-family: 'karla';
+  font-family: 'montserrat';
   font-weight: 800;
   font-style: italic;;
-  src: url('../fonts/karla/Karla-ExtraBoldItalic.ttf');
+  src: url('../fonts/montserrat/Montserrat-ExtraBoldItalic.ttf');
 }
 
 body {
-  font-family: 'karla', sans-serif;
+  font-family: 'montserrat', sans-serif;
   margin: 0 auto;
   background-color: map-get($map: $colors, $key: neutral-500);
 }
