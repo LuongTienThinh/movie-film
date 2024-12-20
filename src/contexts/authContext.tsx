@@ -18,14 +18,8 @@ export const AuthContextProvider: React.FC<IComponentProps> = ({ children }) => 
   const [accessToken, setAccessToken] = useState<string>('');
 
   useEffect(() => {
-    const storedAccessToken = localStorage.getItem('access-token');
-
-    if (storedAccessToken) {
-      if (!isAuth) {
-        setIsAuth(true);
-      }
-      setAccessToken(storedAccessToken);
-    }
+    const storedAccessToken = localStorage.getItem('access-token') || '';
+    setAccessToken(storedAccessToken);
   }, [isAuth]);
 
   useEffect(() => {
@@ -38,9 +32,9 @@ export const AuthContextProvider: React.FC<IComponentProps> = ({ children }) => 
       setUser(data.data);
     };
 
-    if (accessToken) {
-      getUser();
-    }
+    console.log(user, accessToken);
+
+    accessToken ? getUser() : setUser({});
   }, [accessToken]);
 
   return <AuthContext.Provider value={{ user, setUser, isAuth, setIsAuth, accessToken, setAccessToken }}>{children}</AuthContext.Provider>;

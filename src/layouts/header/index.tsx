@@ -10,34 +10,34 @@ import { ICountry, IFilm, IGenre, IResponseData } from 'interfaces';
 import { AuthContext } from 'contexts/authContext';
 import { useViewport } from 'hooks';
 import { MenuBar } from 'components';
-import { AuthService, FilmService, CategoryService } from 'services';
+import { AuthService, FilmService, CategoryService, UserService } from 'services';
 
 const Header = () => {
   const themeMode = useContext(ThemeContext);
   const auth = useContext(AuthContext);
   const { width: viewWidth, breakPoint } = useViewport();
+  const navigate = useNavigate();
 
-  const [comboboxSearchOpen, setComboboxSearchOpen] = useState<boolean>(false);
   const [films, setFilms] = useState<Array<IFilm>>([]);
   const [genres, setGenres] = useState<Array<IGenre>>([]);
   const [countries, setCountries] = useState<Array<ICountry>>([]);
-  const [searchFilmText, setSearchFilmText] = useState<string>('');
-  const [debouncedSearchText, setDebouncedSearchText] = useState<string>('');
   const [filteredFilm, setFilteredFilm] = useState<IFilm[]>([]);
 
-  const navigate = useNavigate();
+  const [comboboxSearchOpen, setComboboxSearchOpen] = useState<boolean>(false);
+  const [searchFilmText, setSearchFilmText] = useState<string>('');
+  const [debouncedSearchText, setDebouncedSearchText] = useState<string>('');
 
+  const [theme, setTheme] = useState<string>('');
+  
   useEffect(() => {
     const getApiLatest = async () => {
       const response: IResponseData = await FilmService.getLatest();
       setFilms(response?.data?.movie);
     };
-    
     const getApiGenres = async () => {
       const response: IResponseData = await CategoryService.getAllCategories('genres');
       setGenres(response?.data);
     };
-    
     const getApiCountries = async () => {
       const response: IResponseData = await CategoryService.getAllCategories('countries');
       setCountries(response?.data);
@@ -71,8 +71,18 @@ const Header = () => {
     setComboboxSearchOpen(isOpen);
   };
 
+  useEffect(() => {
+    const updateTheme = async () => {
+      const response: IResponseData = await UserService.putUserTheme(themeMode.theme);
+    };
+
+    if (auth.user.id) {
+      updateTheme();
+    }
+  }, [themeMode.theme, auth.user]);
+
   const handleToggleTheme = () => {
-    themeMode.toggleTheme(themeMode.theme === 'dark' ? 'light' : 'dark');
+    themeMode.toggleTheme(themeMode.theme === 'light' ? 'dark' : 'light');
   };
 
   const handleLogout = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -263,7 +273,7 @@ const Header = () => {
                             className={
                               comboboxSearchOpen
                                 ? `p-1 max-sm:w-full lg:w-[214px] xl:w-[226px]`
-                                : auth.isAuth
+                                : auth.user.id
                                   ? 'p-1 lg:w-[100px] xl:w-[226px]'
                                   : 'p-1 lg:w-[72px] xl:w-[226px]'
                             }
@@ -324,7 +334,7 @@ const Header = () => {
             </button>
             {/* End theme mode */}
 
-            {auth.isAuth && (
+            {auth.user.id && (
               <Menu as='div' className={comboboxSearchOpen ? 'relative lg:hidden xl:block' : 'relative'}>
                 {({ open: menuOpen }) => (
                   <>
@@ -377,7 +387,7 @@ const Header = () => {
 
             {viewWidth >= breakPoint.lg ? (
               <>
-                {auth.isAuth ? (
+                {auth.user.id ? (
                   <>
                     {/* Account manage */}
                     <Menu as='div' className={comboboxSearchOpen ? 'account relative lg:hidden xl:block' : 'account relative'}>
@@ -539,7 +549,7 @@ const Header = () => {
                                   </Disclosure.Panel>
                                 </Transition>
                               </Disclosure>
-                              {auth.isAuth ? (
+                              {auth.user.id ? (
                                 <>
                                   <Disclosure as='li' className={'account relative'}>
                                     <Disclosure.Button>

@@ -114,9 +114,9 @@ const SearchPage = () => {
       <Header />
       <section className={`wishlist-page sub-content m-auto  sub-content-${themeMode.theme}`}>
         <div className='container'>
-          <div>{wishlistDataHook.renderData()}</div>
-          <div className='w-full h-0.5 my-8 bg-black'></div>
-          <div>{viewedDataHook.renderData()}</div>
+          {followFilms.length > 0 && <div>{wishlistDataHook.renderData()}</div>}
+          {followFilms.length > 0 && viewFilms.length > 0 && <div className='w-full h-0.5 my-8 bg-black'></div>}
+          {viewFilms.length > 0 && <div>{viewedDataHook.renderData()}</div>}
         </div>
       </section>
 
