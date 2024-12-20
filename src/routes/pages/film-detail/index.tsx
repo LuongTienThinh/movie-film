@@ -44,10 +44,6 @@ const FilmDetail = () => {
       }));
       
       popupRef.current && popupRef.current.openModal();
-    } else {
-      if (auth.user.id && film?.id) {
-        const response: IResponseData = await FilmService.putWishlist({ viewed: true, followed: film.is_follow }, '', auth.user.id, film.id);
-      }
     }
   }
   

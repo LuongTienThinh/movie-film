@@ -6,6 +6,7 @@ import { Footer, Header } from 'layouts';
 import { IFilm, IResponseData } from 'interfaces';
 import { ThemeContext } from 'contexts/themeContext';
 import { FilmService } from 'services';
+import { AuthContext } from 'contexts/authContext';
 
 interface IEpisodeBtn {
   filmId: Number | undefined;
@@ -19,10 +20,10 @@ const EpisodeBtn = ({ filmId, ep, filmSlug, slug }: IEpisodeBtn) => {
     <li className='w-[23%] text-center sm:w-[13%] md:w-[9%]'>
       <Link
         to={`/film-detail/${filmId}/${filmSlug}/${slug}`}
-        className='block rounded-p2 bg-[#03AE00] py-1.5 font-medium !leading-none text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base'
+        className={`block rounded-p2 bg-[#03AE00] py-1.5 font-medium !leading-none text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
-        {ep && ep.split(' ')[1]}
+        {ep && (ep.split(' ')[1] || ep)}
       </Link>
     </li>
   );
@@ -30,23 +31,41 @@ const EpisodeBtn = ({ filmId, ep, filmSlug, slug }: IEpisodeBtn) => {
 
 const Episode = () => {
   const themeMode = useContext(ThemeContext);
+  const auth = useContext(AuthContext);
   const params = useParams();
-
+  
   const [film, setFilm] = useState<IFilm>();
 
   useEffect(() => {
-    const getApiDetail = async () => {
-      const response: IResponseData = await FilmService.getDetailFilm({
-        slug: params.slug,
-      });
+    const timing = performance.now();
 
+    const setViewed = async () => {
+      if (auth.user.id && film?.id) {
+        await FilmService.putWishlist({ viewed: true, followed: film.is_follow }, '', auth.user.id, film.id);
+      }
+    };
+  
+    return () => {
+      const elapsedTime = (performance.now() - timing) / 1000;
+      if (elapsedTime > 30) {
+        setViewed().catch(err => console.error(err));
+      }
+    };
+  }, [film]);
+
+  useEffect(() => {
+    const getApiDetail = async () => {
+      const response: IResponseData = auth.user.id
+        ? await FilmService.getUserFilmDetail(params, '', auth.user.id, Number(params.id))
+        : await FilmService.getDetailFilm(params);
+        
       setFilm(response?.data);
     };
 
     if (params) {
       getApiDetail();
     }
-  }, [params]);
+  }, [params, auth.user]);
 
   return (
     <>
@@ -55,7 +74,7 @@ const Episode = () => {
         {film && (
           <>
             <div className='film-watching relative'>
-              <iframe src={film.episodes.find((e) => e.slug == params.ep)?.link} allowFullScreen />
+              <iframe title={film.episodes.find((e) => e.slug === params.ep)?.link} src={film.episodes.find((e) => e.slug === params.ep)?.link} allowFullScreen />
             </div>
             <div className='list-episodes py-10'>
               <div className='container'>
