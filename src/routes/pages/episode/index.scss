@@ -10,6 +10,14 @@
     }
   }
 
+  .tab-episode[data-headlessui-state="selected"] {
+    @apply bg-red text-white;
+  }
+
+  .btn-ep.active {
+    @apply bg-gray-400 text-white;
+  }
+
   &.episodes-light {
     color: map-get($map: $colors, $key: neutral-900);
 

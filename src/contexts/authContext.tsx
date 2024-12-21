@@ -32,8 +32,6 @@ export const AuthContextProvider: React.FC<IComponentProps> = ({ children }) => 
       setUser(data.data);
     };
 
-    console.log(user, accessToken);
-
     accessToken ? getUser() : setUser({});
   }, [accessToken]);
 

@@ -145,6 +145,33 @@ export interface IPagination {
   onChange?: (page: number) => void;
 }
 
+export interface ITabList {
+  currentItem?: number;
+  tabData: {
+    data: Array<any> | [];
+    itemData: Object | {};
+  };
+  itemPerTab: number;
+  onChange?: (tabIndex: number) => void;
+}
+
+export interface ITab {
+  tabName: string;
+}
+
+export interface IEpisodeBtn {
+  filmId: Number | undefined;
+  ep: string | undefined;
+  slug: string | undefined;
+  filmSlug: string | undefined;
+}
+
+export interface IEpisodeTabData {
+  firstTab: number;
+  lastTab: number;
+  itemPerTab: number;
+}
+
 export interface IDataHook {
   title?: string | undefined;
   subHeader?: IHeader | undefined;

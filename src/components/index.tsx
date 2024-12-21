@@ -11,5 +11,6 @@ import Anchor from './elements/anchor';
 import MenuBar from './elements/menu';
 import Popup from './pop-up';
 import Loading from './loading';
+import TabList from './tabs';
 
-export { ListFilter, SubHeader, Film, TopFilm, Ranking, SideBar, Pagination, Anchor, Button, Input, MenuBar, Popup, Loading };
+export { ListFilter, SubHeader, Film, TopFilm, Ranking, SideBar, Pagination, Anchor, Button, Input, MenuBar, Popup, Loading, TabList };
