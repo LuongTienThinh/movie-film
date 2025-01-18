@@ -1,12 +1,14 @@
 import { IInput } from 'interfaces';
+import { forwardRef } from 'react';
 
-const Input = ({ id, type, name, placeholder, label, value = '', checked = false, rules = '', formatted, className, onChange, ...props }: IInput) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({ id, type, name, placeholder, label, value = '', checked = false, rules = '', formatted, className, onChange, ...props }, ref) => {
   switch (type) {
     case 'text':
     case 'password':
       return (
         <>
           <input
+            ref={ref} 
             className={`w-full rounded-p2 px-5 py-2 ${className ?? ''}`}
             type={type}
             name={name}
@@ -23,7 +25,7 @@ const Input = ({ id, type, name, placeholder, label, value = '', checked = false
       return (
         <div className='flex items-center'>
           <div className='relative h-[18px] select-none max-sm:scale-90'>
-            <input className={`${className ?? ''}`} id={id} type={type} name={name} onChange={onChange} {...props} checked={checked} />
+            <input ref={ref} className={`${className ?? ''}`} id={id} type={type} name={name} onChange={onChange} {...props} checked={checked} />
             <label className='checkbox'></label>
           </div>
           {label && (
@@ -37,6 +39,6 @@ const Input = ({ id, type, name, placeholder, label, value = '', checked = false
     default:
       return <></>;
   }
-};
+});
 
 export default Input;

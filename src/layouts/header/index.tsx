@@ -26,8 +26,6 @@ const Header = () => {
   const [comboboxSearchOpen, setComboboxSearchOpen] = useState<boolean>(false);
   const [searchFilmText, setSearchFilmText] = useState<string>('');
   const [debouncedSearchText, setDebouncedSearchText] = useState<string>('');
-
-  const [theme, setTheme] = useState<string>('');
   
   useEffect(() => {
     const getApiLatest = async () => {

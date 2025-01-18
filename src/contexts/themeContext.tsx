@@ -12,7 +12,7 @@ export const ThemeContext = React.createContext<IThemeContext>({
 export const ThemeContextProvider: React.FC<IComponentProps> = ({ children }) => {
   const auth = useContext(AuthContext);
 
-  const [theme, setTheme] = useState<string>('light');
+  const [theme, setTheme] = useState<string>('');
 
   useEffect(() => {
     const getUserTheme = async () => {

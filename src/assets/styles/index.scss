@@ -537,12 +537,16 @@ select {
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    @apply w-2;
+    @apply w-2 h-2;
   }
 
   &::-webkit-scrollbar-thumb {
     @apply w-2 rounded-full;
     background-color: #a7a7a7;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }
 

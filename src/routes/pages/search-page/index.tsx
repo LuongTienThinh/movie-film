@@ -1,25 +1,35 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { Film, Loading, Pagination } from 'components';
+import { Film, Pagination } from 'components';
 import { ThemeContext } from 'contexts/themeContext';
 import { useDataHook } from 'hooks';
 import { IDataHook, IFilm, IPageContent, IPageManage, IResponseData } from 'interfaces';
 import { Footer, Header } from 'layouts';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { PAGE } from 'constants';
 import { CategoryService } from 'services';
 
 const SearchPage = () => {
   const themeMode = useContext(ThemeContext);
   const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
   const [films, setFilms] = useState<Array<IFilm>>([]);
-  const [pageManage, setPageManage] = useState<IPageManage>({ page: 1, perPage: 24 });
+  const [pageManage, setPageManage] = useState<IPageManage>({ page: Number(searchParams.get('page')), perPage: 24 });
   const [pageData, setPageData] = useState<IPageContent>({});
 
   useEffect(() => {
+    if (searchParams.get('page') !== pageManage.page.toString()) {
+      setPageManage((prev) => ({
+        ...prev,
+        page: Number(searchParams.get('page')),
+      }));
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     const getDataFilms = async () => {
-      const response: IResponseData | null = (await pageData?.getData?.(pageManage, params.slug)) || null;
+      const response: IResponseData | null = (await pageData?.getData?.({ ...pageManage, page: searchParams.get('page') }, params.slug)) || null;
 
       if (response) {
         setFilms(response?.data?.movie || []);
@@ -37,16 +47,21 @@ const SearchPage = () => {
       setFilms([]);
       getDataFilms();
     }
-  }, [pageData, pageManage.page, pageManage.perPage]);
+  }, [searchParams, pageData]);
 
   const paginationChange = (event: IPageManage) => {
     setFilms([]);
-    setPageManage((prev) => ({ ...prev, ...event }));
+    setSearchParams({ page: event.page.toString() });
+    // setPageManage((prev) => ({ ...prev, ...event }));
   };
 
   useEffect(() => {
     if (params.page) {
       setFilms([]);
+      
+      if (!searchParams.get('page')) {
+        setSearchParams({ page: '1' });
+      }
 
       if (params.slug) {
         const getDetail = async (params: any) => {
@@ -65,7 +80,7 @@ const SearchPage = () => {
         setPageData(PAGE[params.page]);
       }
     }
-  }, [params]);
+  }, [params.page]);
 
   const pageHook: IDataHook = {
     title: pageData?.title,
@@ -81,9 +96,9 @@ const SearchPage = () => {
         ),
       },
     },
-    filters: false,
+    filters: true,
     pagination: films && pageManage && (
-      <Pagination onChange={(page) => paginationChange({ page: page })} totalItem={films.length} showPrev sibling={1} showNext {...pageManage} />
+      <Pagination onChange={(page) => paginationChange({ page: page })} pageIndex={pageManage.page} showPrev sibling={3} showNext {...pageManage} />
     ),
   };
   const pageDataHook = useDataHook(pageHook);
@@ -91,7 +106,7 @@ const SearchPage = () => {
     <>
       <Header />
 
-      <section className={`search-page sub-content m-auto  sub-content-${themeMode.theme}`}>
+      <section className={`search-page sub-content m-auto sub-content-${themeMode.theme}`}>
         <div className='container'>{pageDataHook.renderData()}</div>
       </section>
 
