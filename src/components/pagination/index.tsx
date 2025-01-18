@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { IPagination } from 'interfaces';
 import { useViewport } from 'hooks';
 import Icons from 'assets/icons';
 import { ThemeContext } from 'contexts/themeContext';
+import Input from 'components/elements/input';
 
 const Pagination = ({ pageIndex, perPage, totalItem, sibling = 1, showGoToFirst, showGoToLast, showNext, showPrev, onChange }: IPagination) => {
   const { width: viewWidth, breakPoint } = useViewport();
@@ -13,15 +14,27 @@ const Pagination = ({ pageIndex, perPage, totalItem, sibling = 1, showGoToFirst,
   const lastPage = (totalItem && perPage && Math.ceil(totalItem / perPage)) || firstPage;
 
   const [currentPage, setCurrentPage] = useState(pageIndex || 1);
+  
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const inputPage = () => {};
+  useEffect(() => {
+    setCurrentPage(pageIndex || 1);
+  }, [pageIndex])
+
+  const inputPage = () => {
+    btnRef.current?.classList.add('hidden');
+    inputRef.current?.classList.remove('hidden');
+  };
 
   const DotsBtn = () => {
+
     return (
       <li className='item'>
-        <button onClick={inputPage} style={{ minWidth: 28 }}>
+        <button ref={btnRef} onClick={inputPage} style={{ minWidth: 28 }}>
           ...
         </button>
+        <Input ref={inputRef} className='hidden' name='dots' type='text' placeholder='...' />
       </li>
     );
   };
