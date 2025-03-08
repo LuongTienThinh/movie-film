@@ -9,7 +9,7 @@ import { Loading } from 'components';
 
 axios.interceptors.request.use((config) => {
   config.headers['Access-Control-Allow-Origin'] = '*';
-  config.baseURL = 'https://aries.id.vn';
+  config.baseURL = 'https://admin.animetop.id.vn';
   config.withCredentials = true;
 
   return config;
