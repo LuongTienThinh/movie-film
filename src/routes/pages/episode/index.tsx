@@ -29,7 +29,7 @@ const EpisodeBtn = ({ filmId, ep, filmSlug, slug }: IEpisodeBtn) => {
     <li className='w-[23%] text-center sm:w-[13%] md:w-[9%]'>
       <Link
         to={`/film-detail/${filmId}/${filmSlug}/${slug}`}
-        className={`btn-ep block rounded-p2 bg-[#03AE00] py-1.5 font-medium !leading-none text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base`}
+        className={`btn-ep block rounded-p2 bg-[#03AE00] py-1.5 font-medium !leading-standard text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
         {ep && (ep.split(' ')[1] || ep)}
@@ -62,7 +62,7 @@ const Episode = () => {
 
     return () => {
       const elapsedTime = (performance.now() - timing) / 1000;
-      if (elapsedTime > 30) { 
+      if (elapsedTime > 30) {
         setViewed().catch(err => console.error(err));
       }
     };

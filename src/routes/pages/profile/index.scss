@@ -63,7 +63,7 @@
       }
 
       input {
-        @apply mb-4 text-sm leading-none;
+        @apply mb-4 text-sm leading-standard;
 
         &::placeholder {
           @apply font-extralight;
@@ -73,7 +73,7 @@
       p {
         @apply text-xs;
         @apply xl:text-sm;
-        @apply my-1 font-extralight leading-5;
+        @apply my-1 font-extralight leading-standard;
       }
 
       .submit-btn {

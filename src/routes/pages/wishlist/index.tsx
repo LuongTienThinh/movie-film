@@ -45,7 +45,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     setFollowFilms(films.filter(film => film.is_follow));
-    setViewFilms(films.filter(film => film.is_view));
+    setViewFilms(films.filter(film => film.views > 0));
   }, [films]);
   
 

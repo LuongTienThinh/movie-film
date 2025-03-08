@@ -19,7 +19,7 @@ const TabSettingPanel = ({ title, content }: ITabSetting) => {
   return (
     <>
       <Tab.Panel className={'panel'}>
-        <div className='title border-b-2 border-gray-400 p-5 text-lg font-semibold leading-none max-sm:mx-10 max-sm:text-center sm:px-10'>{title}</div>
+        <div className='title border-b-2 border-gray-400 p-5 text-lg font-semibold leading-standard max-sm:mx-10 max-sm:text-center sm:px-10'>{title}</div>
         <div className='px-10 py-5 max-sm:text-sm'>
           {content && (
             <>

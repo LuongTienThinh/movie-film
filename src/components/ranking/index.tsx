@@ -41,7 +41,7 @@ const Ranking = ({ listFilm }: IRanking) => {
                           {e && (
                             <li className='rank-item relative flex items-center justify-center p-2'>
                               <div
-                                className='w-1/5 text-center text-4xl font-bold leading-none'
+                                className='w-1/5 text-center text-4xl font-bold leading-standard'
                                 style={{ color: i + 1 === 1 ? '#F12828' : i + 1 === 2 ? '#26BE0D' : i + 1 === 3 ? '#0A85DD' : 'inherit' }}
                               >
                                 {i + 1}
@@ -49,7 +49,7 @@ const Ranking = ({ listFilm }: IRanking) => {
                               <div className='flex h-12 w-4/5 items-center justify-between'>
                                 <img className='h-full w-12 rounded-p1 object-cover object-center' src={e.poster_url} alt='' />
                                 <div className='flex h-full w-[75%] flex-col justify-between'>
-                                  <span className='text-[13px] font-bold max-sm:leading-none'>{e.name}</span>
+                                  <span className='text-[13px] font-bold max-sm:leading-standard'>{e.name}</span>
                                   <div className='common-flex-box'>
                                     <span className='text-[10px] font-semibold'>{e.year}</span>
                                     <div className='flex min-w-[25%] items-center text-[8px] italic'>

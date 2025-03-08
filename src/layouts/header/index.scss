@@ -9,7 +9,7 @@ header {
 
   .header-nav-mid {
     & > ul {
-      @apply items-center justify-between text-lg leading-none;
+      @apply items-center justify-between text-lg leading-standard;
 
       .dropdown-icon {
         @apply h-[7px] w-2.5;
@@ -42,7 +42,7 @@ header {
     @apply top-[calc(100%+22px)] z-50 gap-[5%] rounded-p2 font-medium;
 
     li {
-      @apply relative px-2 py-p1 text-base leading-none;
+      @apply relative px-2 py-p1 text-base leading-standard;
     }
 
     &.dropdown-genre {
@@ -80,7 +80,7 @@ header {
         @apply max-h-[calc(360px-10px)] z-auto;
 
         li {
-          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-none;
+          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-standard;
 
           a {
             @apply block h-full w-full px-2 py-p1;
@@ -96,7 +96,7 @@ header {
         @apply max-h-[350px] z-auto;
 
         li {
-          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-none;
+          @apply mb-p1 me-p1 rounded-p2 p-0 text-sm leading-standard;
 
           a {
             @apply block h-full w-full px-2 py-p1;

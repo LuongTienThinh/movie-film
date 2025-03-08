@@ -8,7 +8,7 @@
 
 .banner {
   .banner-img {
-    @apply h-[min(400px,100vh-60px)] w-full lg:h-[min(800px,100vh-60px)] object-cover;
+    @apply h-[min(400px,100vh-60px)] w-full lg:h-[min(100vh-60px)] object-cover;
   }
 
   .slick-wrapper {
@@ -50,7 +50,7 @@
           }
 
           .movie-detail {
-            @apply absolute left-1/2 top-9/10 min-w-[130px] -translate-x-1/2 rounded-p2 px-p3 py-2 text-xs leading-none opacity-0;
+            @apply absolute left-1/2 top-9/10 min-w-[130px] -translate-x-1/2 rounded-p2 px-p3 py-2 text-xs leading-standard opacity-0;
           }
         }
 
@@ -74,7 +74,7 @@
             }
 
             .movie-detail {
-              @apply pointer-events-auto top-[calc(90%+56px)] -translate-x-1/2 text-lg font-bold leading-none opacity-100 text-center;
+              @apply pointer-events-auto top-[calc(90%+56px)] -translate-x-1/2 text-lg font-bold leading-standard opacity-100 text-center;
               color: map-get($map: $colors, $key: neutral-100);
               background-image: linear-gradient(to right, map-get($btn-bg-gradient, cl-sky-1), map-get($btn-bg-gradient, cl-sky-2), map-get($btn-bg-gradient, cl-sky-3));
               transition: all linear 0.5s;

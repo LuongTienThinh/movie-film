@@ -66,7 +66,7 @@ const FilmDetail = () => {
                   <div className='poster w-[210px] space-y-p2 max-lg:self-center lg:overflow-hidden xl:h-[420px] xl:w-[300px]'>
                     <img className='h-full w-full rounded-p2 object-cover max-lg:aspect-auto max-lg:h-auto' src={film.poster_url} alt='' />
                     <div className='btn flex items-center justify-between lg:hidden'>
-                      <Link className='inline-block px-10' onClick={handlePopup} to={film.episodes[0] ? `/film-detail/${film.id}/${film.slug}/${film.episodes[0].slug}` : ''}>
+                      <Link className='inline-block px-10' onClick={handlePopup} to={film?.episodes[0] ? `/film-detail/${film.id}/${film.slug}/${film?.episodes[0].slug}` : ''}>
                         Xem ngay
                       </Link>
                       <Link className='!m-0 inline-block !bg-none !p-0' to={'#'} onClick={updateFollowState}>
@@ -79,9 +79,7 @@ const FilmDetail = () => {
                     <ul>
                       <li>Tên gốc: {film.origin_name}</li>
                       <li>Tình trạng: {film.status == 'completed' ? 'Hoàn thành' : 'Đang ra'}</li>
-                      <li>
-                        Số tập: {film.episode_current}/{film.episode_total}
-                      </li>
+                      <li>Số tập: {film.episode_current}/{film.episode_total}</li>
                       <li>Thời lượng: {film.time}</li>
                       <li>Năm phát hành: {film.year}</li>
                       <li>Quốc gia: {film.countries.map((e) => e.name).join(', ')}</li>

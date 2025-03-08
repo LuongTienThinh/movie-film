@@ -2,7 +2,7 @@
 
 .sub-content {
   .header {
-    @apply mb-p8 gap-p4 rounded-p2 leading-7;
+    @apply mb-p8 gap-p4 rounded-p2 leading-standard;
 
     > * {
       @apply rounded-p2 py-[11px] relative;
@@ -26,7 +26,7 @@
       }
 
       h2 {
-        @apply relative z-10 ps-6 text-[22px] font-bold leading-none max-sm:text-sm;
+        @apply relative z-10 ps-6 text-[22px] font-bold leading-standard max-sm:text-sm;
       }
     }
 
@@ -46,7 +46,7 @@
       }
 
       a {
-        @apply relative z-10 h-full w-full cursor-pointer text-center text-lg italic leading-[1.2] max-sm:text-sm;
+        @apply relative z-10 h-full w-full cursor-pointer text-center text-[22px] italic leading-standard max-sm:text-sm;
       }
     }
   }
@@ -56,14 +56,14 @@
 
     .filter-item {
       .title {
-        @apply px-p2 py-p1 text-base font-medium leading-none;
+        @apply px-p2 py-p1 text-base font-medium leading-standard;
       }
 
       .filter-wrapper {
         @apply relative;
 
         select {
-          @apply w-full rounded-p1 bg-transparent p-p2 text-sm leading-none;
+          @apply w-full rounded-p1 bg-transparent p-p2 text-sm leading-standard;
         }
 
         .icon {
@@ -126,7 +126,7 @@
       @apply flex items-center;
 
       button {
-        @apply min-w-7 rounded-p1 p-1 font-medium leading-none;
+        @apply min-w-7 rounded-p1 p-1 font-medium leading-standard;
 
         .icon {
           @apply h-7 w-7 text-transparent;

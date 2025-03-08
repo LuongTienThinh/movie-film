@@ -38,7 +38,7 @@ const TabList = ({ tabData, itemPerTab, onChange }: ITabList) => {
           {listTab.map((tab) => (
             <li className='w-auto' key={tab.tabName}>
               <Button
-                className={`text-center block rounded-p2 bg-[#03AE00] px-4 py-1.5 font-medium !leading-none text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base`}
+                className={`text-center block rounded-p2 bg-[#03AE00] px-4 py-1.5 font-medium !leading-standard text-[#ffffff] max-lg:text-xs lg:text-sm xl:text-base`}
               >
                 {tab.tabName}
               </Button>

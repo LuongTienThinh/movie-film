@@ -29,7 +29,7 @@ const Input = forwardRef<HTMLInputElement, IInput>(({ id, type, name, placeholde
             <label className='checkbox'></label>
           </div>
           {label && (
-            <label className='py-1 ps-1 sm:ps-2.5 leading-none max-sm:text-xs' htmlFor={name}>
+            <label className='py-1 ps-1 sm:ps-2.5 leading-standard max-sm:text-xs' htmlFor={name}>
               {label}
             </label>
           )}

@@ -13,7 +13,7 @@
         @apply space-y-p2 lg:space-y-1.5 xl:space-y-p3;
 
         li {
-          @apply leading-[1.3rem] lg:text-sm xl:text-base;
+          @apply leading-standard lg:text-sm xl:text-base;
         }
       }
     }
@@ -37,7 +37,7 @@
         @apply text-center;
 
         a {
-          @apply block rounded-p4 px-p3 py-p1 text-sm leading-none;
+          @apply block rounded-p4 px-p3 py-p1 text-sm leading-standard;
           border: 1px solid map-get($map: $colors, $key: neutral-100);
         }
       }

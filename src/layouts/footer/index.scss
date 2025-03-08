@@ -8,12 +8,12 @@ footer {
   }
   .btn-footer {
     button {
-      @apply rounded-p2 px-2 py-1.5 text-lg leading-none;
+      @apply rounded-p2 px-2 py-1.5 text-lg leading-standard;
     }
   }
 
   .title {
-    @apply text-xl leading-none;
+    @apply text-xl leading-standard;
   }
 
   .social-contact {

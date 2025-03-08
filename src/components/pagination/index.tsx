@@ -79,7 +79,7 @@ const Pagination = ({ pageIndex, perPage, totalItem, sibling = 1, showGoToFirst,
                 <DotsBtn key={i} />
               ) : (
                 <li className='item' key={i}>
-                  <button className={page === currentPage ? 'active' : ''} onClick={() => onChangePage(page)}>
+                  <button className={page === currentPage ? 'active pointer-events-none' : ''} onClick={() => onChangePage(page)}>
                     {page}
                   </button>
                 </li>
