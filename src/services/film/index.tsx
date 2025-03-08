@@ -19,6 +19,7 @@ const FilmService = {
 
   getFilmFollow: async (params?: Object, slug?:string, userId?: Number) => await Method.get(FilmService.nameLink, `/wishlist/${userId}/follow`, params),
   getFilmViewed: async (params?: Object, slug?:string, userId?: Number) => await Method.get(FilmService.nameLink, `/wishlist/${userId}/viewed`, params),
+  getUpdated: async (params?: Object, slug?:string, userId?: Number) => await Method.get(FilmService.nameLink, `/updated/${userId}`, params),
 
   getUserFilm: async (params?: Object, slug?:string, userId?: Number) => await Method.get(FilmService.nameLink, `/wishlist/${userId}`, params),
   getUserFilmDetail: async (params?: Object, slug?:string, userId?: Number, filmId?: Number) => await Method.get(FilmService.nameLink, `/wishlist/${userId}/${filmId}`, params),

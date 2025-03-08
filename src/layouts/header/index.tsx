@@ -6,7 +6,7 @@ import './index.scss';
 import Icons from 'assets/icons';
 import { images } from 'images';
 import { ThemeContext } from 'contexts/themeContext';
-import { ICountry, IFilm, IGenre, IResponseData } from 'interfaces';
+import { ICountry, IFilm, IGenre, IPageManage, IResponseData } from 'interfaces';
 import { AuthContext } from 'contexts/authContext';
 import { useViewport } from 'hooks';
 import { MenuBar } from 'components';
@@ -26,12 +26,9 @@ const Header = () => {
   const [comboboxSearchOpen, setComboboxSearchOpen] = useState<boolean>(false);
   const [searchFilmText, setSearchFilmText] = useState<string>('');
   const [debouncedSearchText, setDebouncedSearchText] = useState<string>('');
+  const [pageManage, setPageManage] = useState<IPageManage>({ page: 1, perPage: 24 });
   
   useEffect(() => {
-    const getApiLatest = async () => {
-      const response: IResponseData = await FilmService.getLatest();
-      setFilms(response?.data?.movie);
-    };
     const getApiGenres = async () => {
       const response: IResponseData = await CategoryService.getAllCategories('genres');
       setGenres(response?.data);
@@ -41,10 +38,24 @@ const Header = () => {
       setCountries(response?.data);
     };
 
-    getApiLatest();
-    getApiGenres();
-    getApiCountries();
+    setTimeout(() => {
+      getApiGenres();
+      getApiCountries();
+    }, 1000);
   }, []);
+
+  useEffect(() => {
+    const getUpdatedFilm = async () => {
+      const response: IResponseData = await FilmService.getUpdated({ ...pageManage, perPage: 24 }, '', auth.user.id);
+      setFilms(response?.data?.movie);
+    };
+
+    if (auth.user.id) {
+      setTimeout(() => {
+        getUpdatedFilm();
+      }, 1000);
+    }
+  }, [auth.user]);
   
   useEffect(() => {
     const queueSearch = setTimeout(() => {
@@ -58,11 +69,13 @@ const Header = () => {
 
   useEffect(() => {
     const handleSearchFilm = async () => {
-      const response: IResponseData = await FilmService.getFilmBySearch({ search: searchFilmText});
+      const response: IResponseData = await FilmService.getFilmBySearch({ search: debouncedSearchText});
       setFilteredFilm(response?.data);
     };
 
-    handleSearchFilm();
+    if (debouncedSearchText.length > 0) {
+      handleSearchFilm();
+    }
   }, [debouncedSearchText]);
 
   const handleSearch = (isOpen: boolean) => {
@@ -140,7 +153,7 @@ const Header = () => {
                                       <Combobox.Option value={item.slug} key={index}>
                                         <Link className='common-flex-box !h-[50px]' to={`/film-detail/${item.id}/${item.slug}`}>
                                           <div className='h-full w-1/4'>
-                                            <img className='h-full w-[40px] rounded-p1' src={item.poster_url} alt='' />
+                                            <img className='h-full w-[40px] rounded-p1 object-cover' src={item.poster_url} alt='' />
                                           </div>
                                           <div className='flex h-full w-3/4 flex-col justify-between'>
                                             <p className='overflow-hidden text-ellipsis text-nowrap text-sm font-semibold'>{item.name}</p>
@@ -298,7 +311,7 @@ const Header = () => {
                                   <Combobox.Option value={item.slug} key={index}>
                                     <Link className='common-flex-box !h-[50px]' to={`/film-detail/${item.id}/${item.slug}`}>
                                       <div className='h-full w-1/4'>
-                                        <img className='h-full w-[40px] rounded-p1' src={item.poster_url} alt='' />
+                                        <img className='h-full w-[40px] rounded-p1 object-cover' src={item.poster_url} alt='' />
                                       </div>
                                       <div className='flex h-full w-3/4 flex-col justify-between'>
                                         <p className='overflow-hidden text-ellipsis text-nowrap text-sm font-semibold'>{item.name}</p>
@@ -360,7 +373,7 @@ const Header = () => {
                                 {({ active }) => (
                                   <Link className='common-flex-box relative !h-[50px]' to={`/film-detail/${item.id}/${item.slug}`}>
                                     <div className='h-full w-1/4'>
-                                      <img className='h-full w-[40px] rounded-p1' src={images[`./${item.slug}.jpg`]} alt='' />
+                                      <img className='h-full w-[40px] rounded-p1 object-cover' src={item.poster_url} alt='' />
                                     </div>
                                     <div className='h-full w-3/4'>
                                       <p className='h-full overflow-hidden text-ellipsis text-sm font-semibold'>
@@ -437,8 +450,8 @@ const Header = () => {
                       to={'/login'}
                       className={
                         comboboxSearchOpen
-                          ? 'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-[1.3rem] lg:hidden xl:block'
-                          : 'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-[1.3rem]'
+                          ? 'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-standard lg:hidden xl:block'
+                          : 'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-standard'
                       }
                     >
                       Đăng nhập
@@ -593,7 +606,7 @@ const Header = () => {
                               ) : (
                                 <>
                                   <li>
-                                    <Link to={'/login'} className={'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-[1.3rem]'}>
+                                    <Link to={'/login'} className={'login-btn rounded-p2 px-2 py-1.5 font-semibold leading-standard'}>
                                       Đăng nhập
                                     </Link>
                                   </li>

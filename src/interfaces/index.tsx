@@ -82,8 +82,8 @@ export interface IFilm {
   genres: Array<any>;
   countries: Array<any>;
   episodes: Array<IEpisode>;
-  is_view?: Boolean;
-  is_follow?: Boolean;
+  is_view?: boolean;
+  is_follow?: boolean;
   [key: string]: any;
 }
 
@@ -93,6 +93,10 @@ export interface IRanking {
 
 export interface ITopFilm extends IFilm {
   rank: number | undefined;
+}
+
+export interface IListFilterOption {
+  [key: string]: boolean;
 }
 
 export interface IListFilter {

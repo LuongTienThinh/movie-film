@@ -27,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const getApiLatest = async () => {
-      const response: IResponseData = await FilmService.getLatest(pageManage);
+      const response: IResponseData = await FilmService.getLatest({ ...pageManage, perPage: 24 });
       setLatestFilms(response?.data?.movie);
     };
 

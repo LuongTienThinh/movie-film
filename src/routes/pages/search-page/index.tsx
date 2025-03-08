@@ -52,7 +52,6 @@ const SearchPage = () => {
   const paginationChange = (event: IPageManage) => {
     setFilms([]);
     setSearchParams({ page: event.page.toString() });
-    // setPageManage((prev) => ({ ...prev, ...event }));
   };
 
   useEffect(() => {
@@ -80,7 +79,7 @@ const SearchPage = () => {
         setPageData(PAGE[params.page]);
       }
     }
-  }, [params.page]);
+  }, [params.page, params.slug]);
 
   const pageHook: IDataHook = {
     title: pageData?.title,

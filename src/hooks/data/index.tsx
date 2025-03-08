@@ -13,7 +13,7 @@ const useDataHook = ({ title, subHeader, filters, sideBar, pagination: Paginatio
       <>
         {title && <h1 className='mb-[30px] text-2xl font-bold uppercase'>{title}</h1>}
         {subHeader && <SubHeader {...subHeader} />}
-        {filters && <ListFilter></ListFilter>}
+        {filters && <ListFilter showCountry={true} showGenre={true} showType={true} showYear={true}></ListFilter>}
         {sideBar && <SideBar {...sideBar} />}
         {Pagination && Pagination}
       </>

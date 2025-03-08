@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 
 import Icons from 'assets/icons';
-import { IFilter, IListFilter, IResponseData } from 'interfaces';
+import { IFilter, IListFilter, IListFilterOption, IResponseData } from 'interfaces';
 import { ThemeContext } from 'contexts/themeContext';
 import { CategoryService } from 'services';
+import { useSearchParams } from 'react-router-dom';
 
-const Filter = ({ title, options, ...props }: IFilter) => {
+const Filter = ({ name, title, options, ...props }: IFilter) => {
+  const [searchParams, setSearchParams] = useSearchParams({});
   const themeMode = useContext(ThemeContext);
 
   return (
@@ -14,7 +16,7 @@ const Filter = ({ title, options, ...props }: IFilter) => {
         <>
           {title && <div className='title'>{title}:</div>}
           <div className='filter-wrapper'>
-            <select {...props}>
+            <select {...props} onChange={(e) => setSearchParams((prev) => ({ ...prev, [name]: e.target.value }))}>
               {options.map((filterItem, index) => (
                 <option key={index} value={filterItem.slug}>
                   {filterItem.name}
@@ -29,54 +31,99 @@ const Filter = ({ title, options, ...props }: IFilter) => {
   );
 };
 
-const ListFilter = () => {
-  const [typeData, setTypeData] = useState<IFilter>({});
-  const [genreData, setGenreData] = useState<IFilter>({});
-  const [countryData, setCountryData] = useState<IFilter>({});
-  const [yearData, setYearData] = useState<IFilter>({});
-  const [numberEpisodeData, setNumberEpisodeData] = useState<IFilter>({});
-
-  const listFilter: IListFilter = {
-    type: {
+const ListFilter = ({ showType = false, showGenre = false, showCountry = false, showYear = false }: IListFilterOption) => {
+  const initialFilter: Partial<IListFilter> = {};
+  
+  if (showType) {
+    initialFilter.type = {
       title: 'Loại phim',
-      option: typeData,
-    },
-    genre: {
+      options: [],
+    };
+  }
+  if (showGenre) {
+    initialFilter.genre = {
       title: 'Thể loại',
-      option: genreData,
-    },
-    country: {
+      options: [],
+    };
+  }
+  if (showCountry) {
+    initialFilter.country = {
       title: 'Quốc gia',
-      option: countryData,
-    },
-    year: {
+      options: [],
+    };
+  }
+  if (showYear) {
+    initialFilter.year = {
       title: 'Năm',
-      option: yearData,
-    },
-    numberEpisode: {
-      title: 'Số tập',
-      option: numberEpisodeData,
-    },
-  };
+      options: [],
+    };
+  }
+
+  const [listFilter, setListFilter] = useState<IListFilter>(initialFilter as IListFilter);
 
   useEffect(() => {
     const getTypes = async () => {
       const response: IResponseData | null = await CategoryService.getAllCategories('genres');
 
       if (response) {
-        setTypeData(response.data);
-        setCountryData(response.data);
-        setGenreData(response.data);
-        setNumberEpisodeData(response.data);
-        setYearData(response.data);
+        setListFilter((prev) => ({ 
+          ...prev,
+          type: {
+            ...prev.type,
+            options: response.data
+          }
+        }));
+      }
+    };
+
+    const getGenres = async () => {
+      const response: IResponseData | null = await CategoryService.getAllCategories('genres');
+
+      if (response) {
+        setListFilter((prev) => ({ 
+          ...prev,
+          genre: {
+            ...prev.genre,
+            options: response.data
+          }
+        }));
+      }
+    };
+
+    const getCountries = async () => {
+      const response: IResponseData | null = await CategoryService.getAllCategories('countries');
+
+      if (response) {
+        setListFilter((prev) => ({ 
+          ...prev,
+          country: {
+            ...prev.country,
+            options: response.data
+          }
+        }));
+      }
+    };
+
+    const getYears = async () => {
+      const response: IResponseData | null = await CategoryService.getAllCategories('genres');
+
+      if (response) {
+        setListFilter((prev) => ({ 
+          ...prev,
+          year: {
+            ...prev.year,
+            options: response.data
+          }
+        }));
       }
     };
 
     getTypes();
+    getGenres();
+    getCountries();
+    getYears();
   }, []);
 
-  useEffect(() => {
-  }, [typeData]);
   return (
     <>
       {listFilter && (
@@ -84,7 +131,7 @@ const ListFilter = () => {
           {Object.keys(listFilter).map((key, index) => {
             return (
               <li key={index} className='filter-item w-[47.5%] sm:w-3/10 lg:w-1/5'>
-                <Filter title={listFilter[key].title} options={listFilter[key].options} />
+                <Filter name={key} title={listFilter[key].title} options={listFilter[key].options} />
               </li>
             );
           })}
